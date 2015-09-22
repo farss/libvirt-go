@@ -18,10 +18,26 @@ func main() {
 		return
 	}
 
-	stat, err := dom.MemoryStats()
+	fmt.Printf("%#v\n", istat)
+
+	dstat, err := dom.BlockStats("vda")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(stat)
+	fmt.Printf("%#v\n", dstat)
+
+	stat, err := dom.MemoryStats(8, 0)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Printf("%#v\n", stat)
+
+	vstat, err := dom.GetVcpus(3)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Printf("%#v\n", vstat)
 }
